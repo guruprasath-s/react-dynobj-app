@@ -22,48 +22,48 @@ import DragSortableList from "react-drag-sortable";
 import "./App.css";
 
 let service = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: "https://my-json-server.typicode.com/guruprasath-s/react-dynobj-app/"
 });
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   app: {
-    display: "flex",
+    display: "flex"
   },
   toolBar: {
-    justifyContent: "center",
+    justifyContent: "center"
   },
   main: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(3)
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
+    marginLeft: drawerWidth
   },
   drawer: {
     width: drawerWidth,
-    flexShrink: 0,
+    flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: drawerWidth
   },
   toolbar: theme.mixins.toolbar,
   formControl: {
-    margin: theme.spacing(3),
+    margin: theme.spacing(3)
   },
   button__cont: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   save__button: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(1)
   },
   default__button: {
     margin: theme.spacing(1),
-    backgroundColor: "#ccc",
-  },
+    backgroundColor: "#ccc"
+  }
 }));
 
 let highKeyObj = {}; //For storing which object has most number of keys
@@ -77,14 +77,14 @@ function App() {
     grid: {
       selectedAttr: [],
       attrOrder: [],
-      attrOptions: {},
+      attrOptions: {}
     },
     list: {
       selectedAttr: [],
       attrOrder: [],
-      attrOptions: {},
+      attrOptions: {}
     },
-    view: view,
+    view: view
   });
   const [listArr, setListArr] = useState([]);
   //Event for checkbox selection
@@ -95,9 +95,9 @@ function App() {
         ...viewConfig[view],
         attrOptions: {
           ...viewConfig[view].attrOptions,
-          [event.target.name]: event.target.checked,
-        },
-      },
+          [event.target.name]: event.target.checked
+        }
+      }
     });
   };
   //Event for Saving using preference
@@ -117,8 +117,8 @@ function App() {
       ...viewConfig,
       [view]: {
         ...viewConfig[view],
-        selectedAttr: [...Object.keys(selectedAttributes)],
-      },
+        selectedAttr: [...Object.keys(selectedAttributes)]
+      }
     });
     setList();
   }, [viewConfig[view].attrOptions, highKeyObj]);
@@ -196,7 +196,7 @@ function App() {
             />
           </ListItem>
         ),
-        classes: [key],
+        classes: [key]
       };
     });
     setListArr(list);
@@ -212,15 +212,15 @@ function App() {
       ...viewConfig,
       [view]: {
         ...viewConfig[view],
-        attrOrder: [...sortedArr],
-      },
+        attrOrder: [...sortedArr]
+      }
     });
   };
   const changeView = (view) => {
     setView(view);
     setViewConfig({
       ...viewConfig,
-      view: view,
+      view: view
     });
   };
   const setDefCheckboxOptions = () => {
@@ -238,10 +238,10 @@ function App() {
           ...viewConfig[view],
           attrOptions: {
             ...viewConfig[view].attrOptions,
-            ...checkDefState,
+            ...checkDefState
           },
-          attrOrder: [...Object.keys(highKeyObj)],
-        },
+          attrOrder: [...Object.keys(highKeyObj)]
+        }
       });
     }
   };
@@ -255,10 +255,10 @@ function App() {
         ...viewConfig[view],
         attrOptions: {
           ...viewConfig[view].attrOptions,
-          ...checkDefState,
+          ...checkDefState
         },
-        attrOrder: [...Object.keys(unSortedHighKeyObj)],
-      },
+        attrOrder: [...Object.keys(unSortedHighKeyObj)]
+      }
     });
   };
   return (
@@ -274,7 +274,7 @@ function App() {
           className={classes.drawer}
           variant="permanent"
           classes={{
-            paper: classes.drawerPaper,
+            paper: classes.drawerPaper
           }}
           anchor="left"
         >
