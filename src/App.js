@@ -22,7 +22,7 @@ import DragSortableList from "react-drag-sortable";
 import "./App.css";
 
 let service = axios.create({
-  baseURL: "https://my-json-server.typicode.com/guruprasath-s/react-dynobj-app/"
+  baseURL: "https://my-json-server.typicode.com/guruprasath-s/react-dynobj-app"
 });
 
 const drawerWidth = 240;
@@ -191,7 +191,7 @@ function App() {
               control={
                 <Checkbox
                   checked={
-                    viewConfig[view].attrOptions[key] == true ? true : false
+                    viewConfig[view].attrOptions[key] === true ? true : false
                   }
                   onChange={handleChange}
                   name={key}
@@ -235,7 +235,7 @@ function App() {
     let checkboxOptions = viewConfig[view].attrOptions;
     if (
       Object.keys(checkDefState).length > 0 &&
-      Object.keys(checkboxOptions).length == 0
+      Object.keys(checkboxOptions).length === 0
     ) {
       setViewConfig({
         ...viewConfig,
