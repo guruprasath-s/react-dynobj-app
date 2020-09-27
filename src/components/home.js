@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -13,26 +13,26 @@ import _ from "lodash";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(2)
   },
   grid: {
-    display: "flex",
+    display: "flex"
   },
   card: {
-    minWidth: 275,
+    minWidth: 275
   },
   layout__toggle: {
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "flex-end"
   },
   key: {
     display: "inline-block",
-    color: "#5d8ed5",
+    color: "#5d8ed5"
   },
   value: {
     display: "inline-block",
-    fontWeight: "500",
-  },
+    fontWeight: "500"
+  }
 }));
 const Home = (props) => {
   const classes = useStyles();
@@ -52,7 +52,7 @@ const Home = (props) => {
       if (_.includes(props.selectedAttr, key)) {
         values.push(
           value && (
-            <div>
+            <div key={key}>
               <Typography
                 className={classes.key}
                 color="textSecondary"
@@ -103,7 +103,7 @@ const Home = (props) => {
             return (
               <Grid
                 item
-                {...(props.view == "grid"
+                {...(props.view === "grid"
                   ? { xs: 6, md: 4, style: { display: "flex" } }
                   : { xs: 12 })}
               >

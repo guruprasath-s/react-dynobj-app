@@ -108,7 +108,7 @@ function App() {
   useEffect(() => {
     let checkboxOptions = viewConfig[view].attrOptions;
     let selKeys = Object.keys(checkboxOptions).map((key) => {
-      if (checkboxOptions[key] == true) {
+      if (checkboxOptions[key] === true) {
         return key;
       }
     });
@@ -153,13 +153,18 @@ function App() {
             return len;
           }, 0);
       });
-    const selViewConfig = JSON.parse(localStorage.getItem("viewConfig")) || {};
-    Object.keys(selViewConfig).length > 0 &&
-      setViewConfig({ ...selViewConfig });
-    Object.keys(selViewConfig).length > 0 && setView(selViewConfig.view);
+    try {
+      const selViewConfig =
+        JSON.parse(localStorage.getItem("viewConfig")) || {};
+      Object.keys(selViewConfig).length > 0 &&
+        setViewConfig({ ...selViewConfig });
+      Object.keys(selViewConfig).length > 0 && setView(selViewConfig.view);
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
   useEffect(() => {
-    console.log(viewConfig);
+    //console.log(viewConfig);
   }, [viewConfig]);
   useEffect(() => {
     businessObj.reduce((len, obj) => {
