@@ -28,7 +28,8 @@
     "react-scripts": "3.4.3"
   },
   "scripts": {
-    "start": "run-p start:api start:app",
+    "start": "run-p start:app",
+    "start:both": "run-p start:api start:app",
     "start:app": "react-scripts start",
     "start:api": "node src/buildScripts/apiServer.js",
     "build": "react-scripts build",
