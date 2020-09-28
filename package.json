@@ -1,6 +1,5 @@
 {
   "name": "react-dynobj-app",
-  "homepage": "https://guruprasath-s.github.io/react-dynobj-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -35,9 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate-mock-data": "node src/buildScripts/generateData.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "generate-mock-data": "node src/buildScripts/generateData.js"
   },
   "eslintConfig": {
     "extends": "react-app"
