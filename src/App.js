@@ -15,6 +15,8 @@ import Typography from "@material-ui/core/Typography";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Home from "./components/home";
 import { Button } from "@material-ui/core";
 import _ from "lodash";
@@ -63,6 +65,10 @@ const useStyles = makeStyles((theme) => ({
   default__button: {
     margin: theme.spacing(1),
     backgroundColor: "#ccc"
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff"
   }
 }));
 
@@ -73,6 +79,7 @@ function App() {
   const classes = useStyles();
   const [businessObj, setBusinessObj] = useState([]); // For maintaining businessObject from API
   const [view, setView] = useState("grid"); // For maintaining default view
+  const [loading, setLoading] = useState(false);
   const [viewConfig, setViewConfig] = useState({
     grid: {
       selectedAttr: [],
@@ -136,6 +143,7 @@ function App() {
     }
   }, [view, viewConfig[view].attrOrder]);
   useEffect(() => {
+    setLoading(true);
     service
       .get("/users")
       .then((response) => {
@@ -152,6 +160,9 @@ function App() {
             }
             return len;
           }, 0);
+      })
+      .finally(() => {
+        setLoading(false);
       });
     try {
       const selViewConfig =
@@ -324,13 +335,19 @@ function App() {
         </Drawer>
         <main className={classes.main}>
           <div className={classes.toolbar} />
-          <Home
-            businessObj={businessObj}
-            selectedAttr={viewConfig[view].selectedAttr}
-            attrOrder={viewConfig[view].attrOrder}
-            view={view}
-            changeView={changeView}
-          />
+          {loading ? (
+            <Backdrop className={classes.backdrop} open={loading}>
+              <CircularProgress color="inherit" />
+            </Backdrop>
+          ) : (
+            <Home
+              businessObj={businessObj}
+              selectedAttr={viewConfig[view].selectedAttr}
+              attrOrder={viewConfig[view].attrOrder}
+              view={view}
+              changeView={changeView}
+            />
+          )}
         </main>
       </div>
     </>
