@@ -28,7 +28,6 @@
     "react-scripts": "3.4.3"
   },
   "scripts": {
-    "start": "run-p start:app",
     "start:both": "run-p start:api start:app",
     "start:app": "react-scripts start",
     "start:api": "node src/buildScripts/apiServer.js",
@@ -37,7 +36,9 @@
     "eject": "react-scripts eject",
     "generate-mock-data": "node src/buildScripts/generateData.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "start": "node server/server.js",
+    "heroku-postbuild": "yarn run build"
   },
   "eslintConfig": {
     "extends": "react-app"
