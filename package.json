@@ -24,26 +24,35 @@
     "react-dom": "^16.13.1",
     "react-drag-sortable": "^1.0.6",
     "react-reorder": "^3.0.0-alpha.7",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "serve": "11.3.2"
   },
   "scripts": {
-    "start": "run-p start:app",
+    "start": "serve -s build",
+    "start:dev": "run-p start:app",
     "start:both": "run-p start:api start:app",
     "start:app": "react-scripts start",
     "start:api": "node src/buildScripts/apiServer.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate-mock-data": "node src/buildScripts/generateData.js"
+    "generate-mock-data": "node src/buildScripts/generateData.js",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "babel": {
-    "presets": ["react-app"]
+    "presets": [
+      "react-app"
+    ]
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
