@@ -84,7 +84,6 @@ const Home = (props) => {
             href="https://my-json-server.typicode.com/guruprasath-s/react-dynobj-app"
             rel="noreferrer"
             target="_blank"
-            rel=""
           >
             https://my-json-server.typicode.com/guruprasath-s/react-dynobj-app
           </Link>
@@ -111,10 +110,11 @@ const Home = (props) => {
       </div>
       <Grid container className={classes.root} spacing={2}>
         {props.selectedAttr.length > 0 &&
-          props.businessObj.map((obj) => {
+          props.businessObj.map((obj, index) => {
             return (
               <Grid
                 item
+                key={index}
                 {...(props.view === "grid"
                   ? { xs: 6, md: 4, style: { display: "flex" } }
                   : { xs: 12 })}
